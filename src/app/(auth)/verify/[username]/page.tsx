@@ -2,7 +2,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Loader2, Trash2 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,6 +26,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const VerifyAccount = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const params = useParams<{ username: string }>();
   const form = useForm<z.infer<typeof verifySchema>>({
@@ -33,6 +34,7 @@ const VerifyAccount = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
+    setIsSubmitting(true);
     try {
       const response = await axios.post(`/api/verify-code`, {
         username: params.username,
@@ -48,6 +50,7 @@ const VerifyAccount = () => {
         },
       });
       router.replace("/sign-in");
+      setIsSubmitting(false);
     } catch (error) {
       console.error("Error in verifying code:", error);
       const axiosError = error as AxiosError<ApiResponse>;
@@ -60,6 +63,7 @@ const VerifyAccount = () => {
           onClick: () => toast.dismiss(toastId),
         },
       });
+      setIsSubmitting(false);
     }
   };
 
@@ -102,8 +106,19 @@ const VerifyAccount = () => {
                 </FormItem>
               )}
             />
-            <Button className="cursor-pointer w-full" type="submit">
-              Submit
+            <Button
+              type="submit"
+              className="cursor-pointer"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                "Verify Code"
+              )}
             </Button>
           </form>
         </Form>
