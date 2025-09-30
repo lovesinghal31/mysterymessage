@@ -7,9 +7,9 @@ import mongoose from "mongoose";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { messageId: string } }
+  { params }: { params: Promise<{ messageId: string }> } // params now a Promise
 ) {
-  const { messageId } = params;
+  const { messageId } = await params; // await params per Next.js 15 requirement
   await dbConnect();
 
   const session = await getServerSession(authOptions);
