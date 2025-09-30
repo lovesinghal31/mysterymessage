@@ -9,9 +9,19 @@ import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
 import { Loader2, Trash2 } from "lucide-react";
 import { ApiResponse } from "@/types/ApiResponse";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 const page = () => {
   const [isSendingMessage, setIsSendingMessage] = useState(false);
@@ -95,6 +105,13 @@ const page = () => {
           </Button>
         </form>
       </Form>
+      <Separator className="my-6" />
+      <div className="text-center">
+        <div className="mb-4">Get Your Message Board</div>
+        <Link href={"/sign-up"}>
+          <Button>Create Your Account</Button>
+        </Link>
+      </div>
     </div>
   );
 };
