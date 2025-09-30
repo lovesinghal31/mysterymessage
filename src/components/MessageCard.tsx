@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import dayjs from "dayjs";
 import { toast } from "sonner";
 import {
   AlertDialog,
@@ -50,8 +51,8 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle>{message.content}</CardTitle>
+        <CardDescription>{dayjs(message.createdAt).format("MMMM D, YYYY h:mm A")}</CardDescription>
         <CardAction>
           <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -64,7 +65,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>
                   This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
+                  your message.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
