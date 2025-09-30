@@ -1,8 +1,13 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
+
+interface Credentials {
+  identifier: string;
+  password: string;
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -10,10 +15,13 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
+        identifier: { label: "Email or Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any): Promise<any> {
+      async authorize(credentials: Credentials | undefined): Promise<User | null> {
+        if (!credentials) {
+          return null;
+        }
         await dbConnect();
         try {
           const user = await UserModel.findOne({
@@ -33,12 +41,29 @@ export const authOptions: NextAuthOptions = {
             user.password
           );
           if (isPasswordCorrect) {
-            return user;
+            const userObject = user.toObject() as {
+              _id: { toString: () => string };
+              isVerified: boolean;
+              isAcceptingMessages: boolean;
+              username: string;
+              email: string;
+            };
+            return {
+              id: userObject._id.toString(),
+              _id: userObject._id.toString(),
+              isVerified: userObject.isVerified,
+              isAcceptingMessages: userObject.isAcceptingMessages,
+              username: userObject.username,
+              email: userObject.email,
+            };
           } else {
             throw new Error("Incorrect password");
           }
-        } catch (error: any) {
-          throw new Error(error);
+        } catch (error) {
+          if (error instanceof Error) {
+            throw new Error(error.message);
+          }
+          return null;
         }
       },
     }),
