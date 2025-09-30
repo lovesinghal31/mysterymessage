@@ -22,7 +22,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 
-const page = () => {
+const SendMessage = () => {
   const [isSendingMessage, setIsSendingMessage] = useState(false);
   const params = useParams<{ username: string }>();
   const username = params.username;
@@ -115,4 +115,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SendMessage;
