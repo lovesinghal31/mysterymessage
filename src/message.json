@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Message from BookLover99",
+    "content": "Just finished that novel you suggested—absolutely amazing!",
+    "received": "5 minutes ago"
+  },
+  {
+    "id": 2,
+    "title": "Message from TechGuru",
+    "content": "Did you check out the latest AI framework update?",
+    "received": "45 minutes ago"
+  },
+  {
+    "id": 3,
+    "title": "Message from TravelBuddy",
+    "content": "Planning a trip next month, any must-visit places?",
+    "received": "3 days ago"
+  },
+  {
+    "id": 4,
+    "title": "Message from GamerX",
+    "content": "Want to join a multiplayer session tonight?",
+    "received": "6 hours ago"
+  },
+  {
+    "id": 5,
+    "title": "Message from Chef101",
+    "content": "I tried your recipe—it turned out delicious!",
+    "received": "2 days ago"
+  },
+  {
+    "id": 6,
+    "title": "Message from FitnessFreak",
+    "content": "Don’t forget leg day tomorrow 😅",
+    "received": "1 week ago"
+  }
+]

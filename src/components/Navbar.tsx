@@ -25,7 +25,7 @@ const Navbar = () => {
   const user: User = session?.user as User;
 
   return (
-    <nav className="p-4 md:p-6 shadow-md border rounded-sm">
+    <nav className="p-4 md:p-6 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <NavigationMenu className="w-auto">
           <NavigationMenuList>
