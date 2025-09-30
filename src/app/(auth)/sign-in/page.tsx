@@ -3,17 +3,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useDebounceCallback } from "usehooks-ts";
+import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import axios, { AxiosError } from "axios";
-import { ApiResponse } from "@/types/ApiResponse";
 import { Loader2, Trash2 } from "lucide-react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -21,7 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { de } from "zod/v4/locales";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 
@@ -44,9 +39,7 @@ const page = () => {
       identifier: data.identifier,
       password: data.password,
     });
-    console.log(result); // DELETE-LATER: debug
     if (result?.error) {
-      console.log("Sign In Error:", result.error); // DELETE-LATER: debug
       const toastId = toast.error("Invalid credentials", {
         style: {
           height: "50px",

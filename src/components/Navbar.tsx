@@ -4,25 +4,16 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth";
 import { Button } from "./ui/button";
-import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
 import {
   NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  const router = useRouter();
-
-  const user: User = session?.user as User;
 
   return (
     <nav className="p-4 md:p-6 shadow-md">

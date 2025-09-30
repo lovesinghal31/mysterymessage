@@ -14,7 +14,6 @@ import { Loader2, Trash2 } from "lucide-react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,7 +21,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { de } from "zod/v4/locales";
 
 const page = () => {
   const [username, setUsername] = useState("");

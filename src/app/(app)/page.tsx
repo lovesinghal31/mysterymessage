@@ -16,7 +16,6 @@ import { Mail } from "lucide-react";
 export default function Home() {
   return (
     <>
-      {/* Main content */}
       <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12">
         <section className="text-center mb-8 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-bold">
@@ -26,25 +25,11 @@ export default function Home() {
             Mystery Message lets you send and receive anonymous messages
           </p>
         </section>
-
         <Carousel
           plugins={[Autoplay({ delay: 2000 })]}
           className="w-full max-w-xs"
         >
           <CarouselContent>
-            {/* {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold">
-                        {index + 1}
-                      </span>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))} */}
             {messages.map((message) => (
               <CarouselItem key={message.id} className="p-4">
                 <Card>
@@ -68,8 +53,6 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </main>
-
-      {/* Footer */}
       <Separator />
       <footer className="text-center p-4 md:p-6">
         © 2023 Mystery Message. All rights reserved.
